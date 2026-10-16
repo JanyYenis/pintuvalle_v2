@@ -1,0 +1,55 @@
+/* ==========================================================================
+   animations.css — animaciones de entrada (equivalentes a las del diseño de Canva)
+   · Hero: fundido + ascenso escalonado al cargar.
+   · Resto: fundido + ascenso al entrar en pantalla (ver js/main.js).
+   · Respeta prefers-reduced-motion y funciona sin JS (el contenido nunca queda oculto).
+   ========================================================================== */
+
+:root {
+  --ease-out: cubic-bezier(0.22, 0.61, 0.36, 1);
+}
+
+/* ---------- Hero (al cargar) ---------- */
+@keyframes rise-in {
+  from { opacity: 0; transform: translate3d(0, 1.6rem, 0); }
+  to   { opacity: 1; transform: none; }
+}
+@keyframes photo-in {
+  from { opacity: 0; scale: 1.08; }
+  to   { opacity: 1; scale: 1; }
+}
+@keyframes badge-in {
+  from { opacity: 0; transform: translate3d(0, 1rem, 0) scale(0.92); }
+  to   { opacity: 1; transform: none; }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .hero__title { animation: rise-in 0.8s var(--ease-out) 0.05s both; }
+  .hero__lead  { animation: rise-in 0.8s var(--ease-out) 0.25s both; }
+  .hero__cta   { animation: rise-in 0.8s var(--ease-out) 0.45s both; }
+  .hero__photo { animation: photo-in 1.1s var(--ease-out) 0.1s both; }
+  .hero__badge { animation: badge-in 0.8s var(--ease-out) 0.6s both; }
+
+  /* ---------- Entrada al hacer scroll ---------- */
+  .js [data-reveal] {
+    opacity: 0;
+    transform: translate3d(var(--reveal-x, 0), var(--reveal-y, 1.75rem), 0);
+    transition:
+      opacity 0.75s var(--ease-out) var(--reveal-delay, 0ms),
+      transform 0.75s var(--ease-out) var(--reveal-delay, 0ms);
+    will-change: opacity, transform;
+  }
+
+  .js [data-reveal="left"]  { --reveal-x: -2.5rem; --reveal-y: 0; }
+  .js [data-reveal="right"] { --reveal-x: 2.5rem;  --reveal-y: 0; }
+  .js [data-reveal="fade"]  { --reveal-x: 0;       --reveal-y: 0; }
+
+  .js [data-reveal].is-visible {
+    opacity: 1;
+    transform: none;
+    will-change: auto;
+  }
+
+  /* Botones: el hover usa transform, no debe pelear con la entrada */
+  .btn { transition: transform 0.15s ease, filter 0.15s ease; }
+}

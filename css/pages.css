@@ -1,0 +1,495 @@
+/* ==========================================================================
+   pages.css — páginas interiores: Vinilos, EMFABcolors, Carta de colores,
+   Estuco y Mastick, Grafiado
+   ========================================================================== */
+
+/* ---------- Piezas compartidas ---------- */
+.page-title {
+  font-family: var(--ff-display);
+  font-size: clamp(2.2rem, 1rem + 3.9vw, 3.2rem);
+  font-weight: 700;
+  line-height: 1.2;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  text-align: center;
+  text-wrap: balance;
+  color: var(--c-blue);
+}
+
+/* Franja blanca de ancho completo con título (Estuco, Grafiado) */
+.band-title {
+  padding: clamp(0.6rem, 1.6vw, 1.1rem) var(--gutter);
+  background: var(--c-white);
+}
+
+.band-title .page-title {
+  font-size: clamp(1.5rem, 0.6rem + 2.9vw, 3rem);
+}
+
+.logo-band {
+  display: grid;
+  place-items: center;
+  padding: clamp(0.4rem, 1.2vw, 0.9rem) var(--gutter);
+  background: var(--c-yellow);
+}
+
+.logo-band img {
+  width: clamp(9rem, 17vw, 14rem);
+}
+
+.page-footer {
+  padding: 1.5rem var(--gutter);
+  font-size: 0.95rem;
+  text-align: center;
+  background: var(--c-white);
+  color: var(--c-ink);
+}
+
+.page-footer a {
+  font-weight: 700;
+  color: var(--c-blue);
+  text-underline-offset: 0.15em;
+}
+
+.page-footer span + span::before {
+  content: "·";
+  margin-inline: 0.6em;
+}
+
+/* ==========================================================================
+   Vinilos
+   ========================================================================== */
+.vinilos-intro {
+  padding-block: clamp(1.5rem, 3vw, 2.5rem) clamp(2rem, 4vw, 3.5rem);
+}
+
+.vin-band {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: clamp(1rem, 2vw, 2rem) 1rem;
+  margin-top: clamp(1.25rem, 3vw, 2rem);
+  padding: clamp(1rem, 2.4vw, 1.75rem) clamp(0.75rem, 2vw, 1.5rem);
+  background: var(--c-yellow);
+  border-radius: var(--radius-card);
+}
+
+@media (min-width: 52rem) {
+  .vin-band {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+.vin-band__item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.6rem;
+  text-align: center;
+}
+
+.vin-band__item img {
+  width: 100%;
+  height: clamp(10rem, 22vw, 17.5rem);
+  object-fit: contain;
+}
+
+.vin-band__label {
+  font-family: var(--ff-display);
+  font-size: clamp(1rem, 0.6rem + 1.4vw, 1.75rem);
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--c-blue);
+}
+
+/* Fichas de producto: tarjeta gris + cubeta que sobresale */
+.fichas {
+  display: grid;
+  gap: clamp(2.5rem, 5vw, 3.5rem);
+  padding-block: 0 clamp(3rem, 6vw, 5rem);
+}
+
+.ficha {
+  display: grid;
+  grid-template-columns: 1fr;
+  align-items: center;
+  justify-items: center;
+}
+
+.ficha__img {
+  position: relative;
+  z-index: 1;
+  width: clamp(9rem, 38vw, 13rem);
+  margin-bottom: -2.5rem;
+}
+
+.ficha__card {
+  width: 100%;
+  padding: clamp(2.75rem, 6vw, 2rem) clamp(1.25rem, 3vw, 2.5rem) clamp(1.25rem, 3vw, 2rem);
+  background: var(--c-surface);
+}
+
+.ficha__title {
+  font-size: clamp(1.25rem, 1rem + 1vw, 1.8rem);
+  font-weight: 700;
+  line-height: 1.3;
+  color: var(--c-blue);
+}
+
+.ficha__card p {
+  margin-top: 0.4rem;
+  font-size: clamp(1rem, 0.85rem + 0.7vw, 1.8rem);
+  font-weight: 700;
+  line-height: 1.4;
+  color: var(--c-blue);
+}
+
+@media (min-width: 52rem) {
+  .ficha {
+    grid-template-columns: minmax(0, 30%) minmax(0, 1fr);
+    justify-items: stretch;
+  }
+
+  .ficha__img {
+    width: min(100%, 17rem);
+    margin: -1.5rem -4.5rem -1.5rem 0;
+    justify-self: center;
+  }
+
+  .ficha__card {
+    min-height: 11rem;
+    padding: 1.5rem 2.5rem 1.5rem 6rem;
+    align-self: center;
+  }
+
+  .ficha--right {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 30%);
+  }
+
+  .ficha--right .ficha__img {
+    grid-column: 2;
+    grid-row: 1;
+    margin: -1.5rem 0 -1.5rem -4.5rem;
+  }
+
+  .ficha--right .ficha__card {
+    grid-column: 1;
+    grid-row: 1;
+    padding: 1.5rem 6rem 1.5rem 2.5rem;
+  }
+}
+
+/* Presentaciones: composición de foto + cubetas + etiquetas como texto real */
+.presentation {
+  position: relative;
+  container-type: inline-size;
+  overflow: hidden;
+  background: #1c2230;
+}
+
+.presentation > img {
+  width: 100%;
+  height: auto;
+}
+
+.presentation__label {
+  position: absolute;
+  left: var(--x);
+  top: var(--y);
+  font-size: 3.454cqw;
+  font-weight: 700;
+  line-height: 1;
+  white-space: nowrap;
+  color: var(--c-white);
+  text-shadow: 0 0.2cqw 1cqw rgb(0 0 0 / 0.35);
+}
+
+.vin-closing {
+  padding: clamp(1.25rem, 3vw, 2.25rem) var(--gutter);
+  font-family: "Times New Roman", Times, serif;
+  font-size: clamp(1.6rem, 1rem + 2vw, 2.85rem);
+  line-height: 1.55;
+  text-align: center;
+  text-wrap: balance;
+  color: #000;
+}
+
+/* ==========================================================================
+   EMFABcolors
+   ========================================================================== */
+.emfab {
+  background: var(--c-blue);
+  color: var(--c-white);
+}
+
+.emfab__hero {
+  padding-block: clamp(2rem, 6vw, 5rem) clamp(2rem, 5vw, 3.5rem);
+}
+
+.emfab__head {
+  display: inline-block;
+  text-align: center;
+  margin-left: clamp(0rem, 7vw, 6rem);
+}
+
+.emfab__title {
+  display: inline-block;
+  padding: 0 0.1em 0.05em;
+  font-family: "Times New Roman", Times, serif;
+  font-size: clamp(2.8rem, 1rem + 6.4vw, 6rem);
+  font-weight: 400;
+  line-height: 1.05;
+  border-bottom: clamp(0.2rem, 0.5vw, 0.4rem) solid var(--c-white);
+}
+
+.emfab__tag {
+  margin-top: clamp(0.5rem, 1.5vw, 1rem);
+  font-family: var(--ff-open);
+  font-size: clamp(0.9rem, 0.5rem + 1.3vw, 1.95rem);
+  letter-spacing: 0.35em;
+  text-indent: 0.35em;
+  text-transform: uppercase;
+}
+
+.emfab__cubetas {
+  width: min(100%, 58rem);
+  margin: clamp(1.5rem, 4vw, 3rem) auto 0;
+}
+
+.emfab__subtitle {
+  margin-top: 1.25rem;
+  font-family: var(--ff-open);
+  font-size: clamp(1.05rem, 0.7rem + 1.4vw, 1.9rem);
+  font-weight: 700;
+  line-height: 1.3;
+  text-align: center;
+  text-transform: uppercase;
+  text-wrap: balance;
+}
+
+.emfab__body {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
+  margin-top: clamp(1.5rem, 3vw, 2.25rem);
+  /* mismo margen izquierdo que el contenedor; la foto llega al borde derecho */
+  padding-left: max(var(--gutter), calc((100vw - var(--container)) / 2 + var(--gutter)));
+}
+
+.emfab__text {
+  padding-right: var(--gutter);
+  font-family: var(--ff-open);
+  font-size: clamp(1.05rem, 0.8rem + 1vw, 1.95rem);
+  line-height: 1.38;
+}
+
+.emfab__text p + p {
+  margin-top: 1.4em;
+}
+
+.emfab__sala {
+  width: 100%;
+  height: 100%;
+  min-height: 14rem;
+  object-fit: cover;
+}
+
+@media (min-width: 52rem) {
+  .emfab__body {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr);
+    align-items: stretch;
+    gap: clamp(1rem, 3vw, 2.5rem);
+  }
+}
+
+.emfab__logo {
+  display: grid;
+  place-items: center;
+  padding: clamp(1.5rem, 4vw, 3rem) var(--gutter);
+  background: var(--c-white);
+}
+
+.emfab__logo img {
+  width: clamp(11rem, 20vw, 17rem);
+}
+
+/* ==========================================================================
+   Carta de colores
+   ========================================================================== */
+.swatch-top {
+  display: grid;
+  grid-template-columns: 1fr;
+  background: var(--c-white);
+}
+
+.swatch-top__photo {
+  width: 100%;
+  height: 100%;
+  min-height: 16rem;
+  max-height: 24rem;
+  object-fit: cover;
+}
+
+@media (min-width: 52rem) {
+  .swatch-top {
+    grid-template-columns: 38.7% 1fr;
+  }
+
+  .swatch-top__photo {
+    max-height: none;
+  }
+}
+
+.swatch-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(5.25rem, 1fr));
+  gap: clamp(1rem, 2vw, 1.5rem) 0.5rem;
+  padding: clamp(1.25rem, 3vw, 2.5rem) clamp(0.75rem, 2.5vw, 2.25rem);
+}
+
+.swatch {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  text-align: center;
+}
+
+.swatch__chip {
+  width: 3.75rem;
+  height: 3.75rem;
+  background: var(--c);
+  border-radius: 0.25rem;
+  box-shadow: inset 0 0 0 1px rgb(0 0 0 / 0.1);
+  transition: transform 0.15s ease;
+}
+
+.swatch:hover .swatch__chip {
+  transform: scale(1.12);
+}
+
+.swatch__name {
+  max-width: 6rem;
+  font-size: 0.8rem;
+  line-height: 1.2;
+  text-wrap: balance;
+  color: var(--c-ink);
+}
+
+.strip {
+  height: clamp(1rem, 2.4vw, 1.9rem);
+  background: var(--c-blue);
+}
+
+.swatch-end {
+  display: grid;
+  place-items: center;
+  padding: 1.5rem var(--gutter) 2.5rem;
+}
+
+.swatch-end img {
+  width: clamp(8rem, 12vw, 10rem);
+}
+
+/* ==========================================================================
+   Estuco y Mastick  /  Grafiado  (filas: composición + texto)
+   ========================================================================== */
+.rows {
+  display: grid;
+  gap: clamp(2.5rem, 6vw, 3.5rem);
+  padding-block: clamp(1.5rem, 4vw, 3rem);
+}
+
+.row {
+  display: grid;
+  grid-template-columns: 1fr;
+  align-items: center;
+  gap: 1.25rem;
+}
+
+.row__media {
+  width: 100%;
+}
+
+.row__text {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-inline: var(--gutter);
+  text-align: center;
+}
+
+.row__title {
+  font-family: var(--ff-display);
+  font-size: clamp(1.7rem, 1rem + 2.2vw, 2.5rem);
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  line-height: 1.2;
+  text-transform: uppercase;
+}
+
+.row__text p {
+  max-width: 34rem;
+  margin-top: 1.25em;
+  font-size: clamp(1.05rem, 0.8rem + 0.9vw, 1.75rem);
+  line-height: 1.12;
+  letter-spacing: -0.03em;
+}
+
+.row__text .row__title + p {
+  margin-top: 1.5rem;
+}
+
+@media (min-width: 52rem) {
+  .row {
+    grid-template-columns: 54% 1fr;
+    gap: clamp(1rem, 3vw, 3rem);
+  }
+
+  .row__text {
+    padding-inline: 0 5vw;
+  }
+}
+
+/* Estuco: fondo azul, texto blanco */
+.estuco {
+  background: var(--c-blue);
+  color: var(--c-white);
+}
+
+.estuco__top {
+  padding-top: clamp(1.5rem, 4vw, 3rem);
+}
+
+.estuco .rows {
+  padding-bottom: clamp(2rem, 5vw, 3.5rem);
+}
+
+/* Grafiado: fondo amarillo, texto azul */
+.grafiado {
+  background: var(--c-yellow);
+  color: var(--c-blue);
+}
+
+.grafiado__top {
+  padding-top: clamp(1.5rem, 4vw, 3rem);
+}
+
+.grafiado .rows {
+  gap: clamp(2rem, 5vw, 3.5rem);
+  padding-block: clamp(1.5rem, 4vw, 2.5rem) clamp(2rem, 5vw, 4rem);
+}
+
+.grafiado .row {
+  margin-top: 1.5rem;
+}
+
+.grafiado .row__media {
+  padding-left: 1rem;
+}
+
+.row__badge {
+  width: clamp(5rem, 11vw, 9.25rem);
+  margin-top: 1.5rem;
+  align-self: flex-end;
+}

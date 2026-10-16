@@ -1,0 +1,207 @@
+/* ==========================================================================
+   components.css — piezas reutilizables (header, botones, tarjetas, logo)
+   ========================================================================== */
+
+/* ---------- Header / navegación ---------- */
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  height: var(--header-h);
+  background: var(--c-white);
+  border-bottom: 1px solid rgb(48 66 84 / 0.08);
+}
+
+.site-header__inner {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  height: 100%;
+}
+
+.nav-toggle {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  width: 2.75rem;
+  height: 2.75rem;
+  padding: 0;
+  color: var(--c-ink);
+  background: none;
+  border: 0;
+  cursor: pointer;
+}
+
+.nav-toggle__bars,
+.nav-toggle__bars::before,
+.nav-toggle__bars::after {
+  display: block;
+  width: 1.4rem;
+  height: 2px;
+  background: currentColor;
+  border-radius: 2px;
+  transition: transform 0.2s ease, opacity 0.2s ease;
+}
+
+.nav-toggle__bars {
+  position: relative;
+}
+
+.nav-toggle__bars::before,
+.nav-toggle__bars::after {
+  content: "";
+  position: absolute;
+  left: 0;
+}
+
+.nav-toggle__bars::before {
+  top: -0.45rem;
+}
+
+.nav-toggle__bars::after {
+  top: 0.45rem;
+}
+
+.nav-toggle[aria-expanded="true"] .nav-toggle__bars {
+  background: transparent;
+}
+
+.nav-toggle[aria-expanded="true"] .nav-toggle__bars::before {
+  transform: translateY(0.45rem) rotate(45deg);
+}
+
+.nav-toggle[aria-expanded="true"] .nav-toggle__bars::after {
+  transform: translateY(-0.45rem) rotate(-45deg);
+}
+
+.nav__list {
+  display: flex;
+  align-items: center;
+  gap: clamp(1rem, 2.2vw, 2rem);
+}
+
+.nav__link {
+  display: block;
+  padding: 0.25rem 0;
+  font-size: 0.95rem;
+  color: var(--c-ink);
+  text-decoration: none;
+  opacity: 0.68;
+  transition: opacity 0.15s ease;
+}
+
+.nav__link:hover,
+.nav__link[aria-current="page"] {
+  opacity: 1;
+}
+
+.nav__link[aria-current="page"] {
+  font-weight: 700;
+}
+
+@media (max-width: 52rem) {
+  .nav-toggle {
+    display: inline-flex;
+  }
+
+  .nav {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    display: none;
+    padding: 0.5rem var(--gutter) 1rem;
+    background: var(--c-white);
+    border-bottom: 1px solid rgb(48 66 84 / 0.12);
+    box-shadow: 0 12px 24px rgb(0 0 0 / 0.08);
+  }
+
+  .nav.is-open {
+    display: block;
+  }
+
+  .nav__list {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0;
+  }
+
+  .nav__link {
+    padding: 0.8rem 0;
+    font-size: 1.05rem;
+    border-bottom: 1px solid rgb(48 66 84 / 0.08);
+  }
+}
+
+/* ---------- Botones ---------- */
+.btn {
+  display: inline-block;
+  padding: 0.2em 0.9em;
+  font-family: var(--ff-sans);
+  font-weight: 700;
+  line-height: 1.4;
+  color: var(--c-white);
+  text-decoration: underline;
+  text-underline-offset: 0.15em;
+  background: var(--c-blue);
+  cursor: pointer;
+  transition: transform 0.15s ease, filter 0.15s ease;
+}
+
+.btn:hover {
+  filter: brightness(1.15);
+  transform: translateY(-1px);
+}
+
+.btn--pill {
+  font-size: var(--fs-card);
+  text-transform: uppercase;
+  border-radius: var(--radius-pill);
+}
+
+.btn--accent {
+  font-size: var(--fs-palette);
+  background: var(--c-blue-strong);
+  border-radius: 0.5rem;
+}
+
+/* ---------- Tarjeta de producto ---------- */
+.product-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  padding: 1.75rem 1rem 1.5rem;
+  text-align: center;
+  background: var(--c-yellow);
+  border-radius: var(--radius-card);
+}
+
+.product-card__image {
+  width: 100%;
+  height: clamp(15rem, 24vw, 20.5rem);
+  object-fit: contain;
+}
+
+.product-card__title {
+  /* Reserva 2 líneas para que los botones queden alineados entre tarjetas */
+  display: flex;
+  align-items: center;
+  min-height: 2.8em;
+  font-family: var(--ff-sans);
+  font-size: var(--fs-card);
+  font-weight: 700;
+  line-height: 1.38;
+  text-transform: uppercase;
+  color: var(--c-blue);
+}
+
+.product-card .btn {
+  margin-top: auto;
+}
+
+/* ---------- Marca (wordmark Pinturas PV) ---------- */
+.brand-mark {
+  width: clamp(11rem, 23vw, 19.25rem);
+  margin-inline: auto;
+}
